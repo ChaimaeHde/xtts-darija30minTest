@@ -1,0 +1,34 @@
+# ============================================================
+# XTTS-v2 Darija Marocain — Dependencies
+# GPU: Tesla T4 | Platform: Google Colab
+# ============================================================
+
+# Core TTS
+coqui-tts==0.24.2
+
+# PyTorch (compatible T4 + coqui-tts)
+torch==2.6.0
+torchaudio==2.6.0
+
+# Audio processing
+librosa>=0.10.1
+soundfile>=0.12.1
+
+# Dataset
+datasets>=2.16.0
+huggingface-hub>=0.20.3
+pandas>=2.1.4
+numpy>=1.26.2
+tqdm>=4.66.1
+
+# Evaluation
+faster-whisper>=1.0.0
+jiwer>=3.0.3
+evaluate>=0.4.0
+transformers==4.42.0
+
+# Interface
+gradio>=4.14.0
+
+# Utils
+PyYAML>=6.0.1

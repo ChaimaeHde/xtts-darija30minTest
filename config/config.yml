@@ -1,0 +1,49 @@
+# ============================================================
+# XTTS-v2 Darija Marocain — Configuration centrale
+# ============================================================
+
+model:
+  name: tts_models/multilingual/multi-dataset/xtts_v2
+  language: ar
+  base_model_dir: /root/.local/share/tts/tts_models--multilingual--multi-dataset--xtts_v2
+  config_json: config.json
+  vocab_file: vocab.json
+  dvae_file: dvae.pth
+  mel_stats_file: mel_stats.pth
+
+dataset:
+  name: atlasia/DODa-audio-dataset
+  text_column: darija_Arab_new
+  n_samples: 650
+  output_dir: /content/doda_f1_30min
+  wavs_dir: /content/doda_f1_30min/wavs
+  train_csv: /content/doda_f1_30min/train.csv
+  sample_rate: 22050          # XTTS-v2 entrainement
+  output_sample_rate: 24000   # XTTS-v2 génération
+  min_text_len: 5
+  max_text_len: 150
+  eval_split_size: 0.1
+  eval_split_max_size: 256
+
+training:
+  epochs: 5
+  batch_size: 2
+  grad_accum_steps: 126       # batch effectif = 2x126 = 252 (recommandé Coqui)
+  learning_rate: 5.0e-6
+  mixed_precision: true       # fp16 pour T4
+  output_path: /content/pfa_outputs
+  drive_backup: /content/drive/MyDrive/xtts_darija_pfa
+  best_model: best_model_1370.pth
+
+evaluation:
+  whisper_model: openai/whisper-small
+  n_test_samples: 10
+  compute_wer: true
+  compute_cer: true
+  compute_mos: true
+
+inference:
+  temperature: 0.7
+  top_k: 50
+  top_p: 0.85
+  output_wav: output.wav

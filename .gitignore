@@ -1,0 +1,22 @@
+# Modèles (trop lourds pour GitHub)
+outputs/
+pfa_outputs/
+*.pth
+*.pt
+*.ckpt
+
+# Audio et dataset
+*.wav
+*.mp3
+doda_f1_30min/
+
+# Python
+__pycache__/
+*.pyc
+.env
+
+# Colab / Jupyter
+.ipynb_checkpoints/
+
+# Credentials
+.git-credentials
