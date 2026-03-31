@@ -13,21 +13,21 @@ basé sur XTTS-v2 avec fine-tuning sur le dataset DODa.
 | Loss mel_ce finale | 4.246 | Convergence partielle |
 
 ## Installation
-```bash
+\`\`\`bash
 pip install -r requirements.txt
 apt-get install -y ffmpeg
-```
+\`\`\`
 
 ## Utilisation rapide
 
 ### 1. Préparer les données
-```python
+\`\`\`python
 from data.prepare_dataset import prepare_all
 prepare_all(n_samples=650, output_dir="doda_darija")
-```
+\`\`\`
 
 ### 2. Finetuner (GPU T4 requis)
-```python
+\`\`\`python
 from training.finetune import finetune
 finetune(
     data_path   = "doda_darija",
@@ -35,10 +35,10 @@ finetune(
     output_path = "outputs",
     epochs      = 5,
 )
-```
+\`\`\`
 
 ### 3. Générer un audio
-```python
+\`\`\`python
 from inference.generate import load_model, generate
 model, config = load_model(
     checkpoint_path = "outputs/best_model.pth",
@@ -50,23 +50,19 @@ generate(model, config,
     speaker_wav = "ref.wav",
     output_path = "output.wav",
 )
-```
+\`\`\`
 
 ### 4. Interface Gradio
-```python
+\`\`\`python
 from interface.gradio_app import launch_interface
 launch_interface(model, config, share=True)
-```
-
-## Demo
-- HuggingFace Spaces : https://huggingface.co/spaces/chaimaehde/tts-darija-marocain
-- Modèle finetuné   : https://huggingface.co/chaimaehde/xtts-darija
+\`\`\`
 
 ## Dataset
 DODa : https://huggingface.co/datasets/atlasia/DODa-audio-dataset
 
 ## Structure du projet
-```
+\`\`\`
 xtts-darija/
 ├── config/           ← Configuration centralisée
 ├── data/             ← Préparation du dataset
@@ -75,7 +71,7 @@ xtts-darija/
 ├── evaluation/       ← WER, CER, MOS
 ├── interface/        ← Interface Gradio
 └── notebooks/        ← Demo Colab
-```
+\`\`\`
 
 ## Auteurs
-Projet de Fin d\'Année — Synthèse Vocale Expressive pour le Darija Marocain
+Projet de Fin d'Année — Synthèse Vocale Expressive pour le Darija Marocain
