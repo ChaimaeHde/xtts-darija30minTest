@@ -72,23 +72,60 @@ xtts-darija/
 ├── interface/        ← Interface Gradio
 └── notebooks/        ← Demo Colab
 \`\`\`
-## To run the app
-#Cellule 1 — installer
-\`\`\`python
+
+
+
+##  Exécuter le modèle sur une autre machine (sans re-fine-tuning)
+
+###  Important
+Le repository hébergé sur GitHub **ne contient pas les fichiers du modèle entraîné** (`best_model_1370.pth`, `config.json`) car ils sont trop volumineux
+
+##  Pourquoi aucun fine-tuning n’est nécessaire
+
+Le fine-tuning est effectué **une seule fois** pour générer les fichiers finaux :
+
+- `best_model_1370.pth`
+- `config.json`
+
+Ensuite, le modèle peut être réutilisé à l’infini.
+
+La fonction `load_model()` :
+- charge la configuration XTTS  
+- initialise le modèle  
+- charge les poids entraînés (checkpoint)  
+- charge le tokenizer / vocabulaire  
+- envoie le modèle sur CPU ou GPU  
+
+Donc lorsque vous exécutez `app.py`, le modèle est simplement **restauré**, pas réentraîné.
+
+---
+
+## Ce dont vous avez besoin
+Pour exécuter le projet sur une autre machine :
+
+1. Le repository du code  
+2. Les dépendances installées  
+3. Les fichiers du modèle entraîné :
+   - `best_model_1370.pth`
+   - `config.json`  
+4. Le tokenizer XTTS (géré automatiquement)
+   
+## Étapes pour exécuter sur une autre machine / Colab
+
+### 1) Installer les dépendances
+```bash
 !pip install -q coqui-tts==0.24.2 gradio soundfile numpy
 !apt-get update -y && apt-get install -y ffmpeg
 
-#Cellule 2 — monter Drive si tu gardes le modèle dans Drive
+ ### 2)  monter Drive si tu gardes le modèle dans Drive
 from google.colab import drive
 drive.mount('/content/drive')
-
-#Cellule 3 — cloner le repo GitHub
+ 3)  cloner le repo GitHub
 %cd /content
 !git clone https://github.com/ChaimaeHde/xtts-darija30minTest.git
 %cd /content/xtts-darija30minTest
 !ls
-
-#Cellule 4 — remettre les checkpoints
+4) remettre les checkpoints
 import os, shutil
 
 MODEL_SOURCE_DIR = "/content/drive/MyDrive/xtts_darija_pfa"
@@ -98,11 +135,10 @@ os.makedirs(CHECKPOINTS_DIR, exist_ok=True)
 shutil.copy2(os.path.join(MODEL_SOURCE_DIR, "best_model_1370.pth"), CHECKPOINTS_DIR)
 shutil.copy2(os.path.join(MODEL_SOURCE_DIR, "config.json"), CHECKPOINTS_DIR)
 
-print(" checkpoints ready:", os.listdir(CHECKPOINTS_DIR))
-
-#Cellule 5 — lancer
+print("checkpoints ready:", os.listdir(CHECKPOINTS_DIR))
+5) lancer
 !python app.py
-\`\`\`
+
 
 
 ## Auteurs
