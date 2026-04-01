@@ -147,4 +147,5 @@ print("checkpoints ready:", os.listdir(CHECKPOINTS_DIR))
 
 
 ## Auteurs
-Projet de Fin d'Année — Synthèse Vocale Expressive pour le Darija Marocain
+Projet de Fin d'Année — Synthèse Vocale Expressive pour le Darija Marocain 
+Chaimae Haddouche - Loubna Haouach
