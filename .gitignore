@@ -18,5 +18,10 @@ __pycache__/
 # Colab / Jupyter
 .ipynb_checkpoints/
 
+# checkpoints/
+.gradio/
+*.pth
+*.wav
+
 # Credentials
 .git-credentials
