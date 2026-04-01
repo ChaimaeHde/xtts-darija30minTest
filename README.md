@@ -116,8 +116,9 @@ Pour exécuter le projet sur une autre machine :
 ```bash
 !pip install -q coqui-tts==0.24.2 gradio soundfile numpy
 !apt-get update -y && apt-get install -y ffmpeg
-
+```
  ### 2)  monter Drive si tu gardes le modèle dans Drive
+```bash
 from google.colab import drive
 drive.mount('/content/drive')
  3)  cloner le repo GitHub
@@ -125,7 +126,9 @@ drive.mount('/content/drive')
 !git clone https://github.com/ChaimaeHde/xtts-darija30minTest.git
 %cd /content/xtts-darija30minTest
 !ls
-4) remettre les checkpoints
+```
+### 4) remettre les checkpoints
+```bash
 import os, shutil
 
 MODEL_SOURCE_DIR = "/content/drive/MyDrive/xtts_darija_pfa"
@@ -136,9 +139,11 @@ shutil.copy2(os.path.join(MODEL_SOURCE_DIR, "best_model_1370.pth"), CHECKPOINTS_
 shutil.copy2(os.path.join(MODEL_SOURCE_DIR, "config.json"), CHECKPOINTS_DIR)
 
 print("checkpoints ready:", os.listdir(CHECKPOINTS_DIR))
-5) lancer
+```
+### 5) lancer
+```bash
 !python app.py
-
+```
 
 
 ## Auteurs
