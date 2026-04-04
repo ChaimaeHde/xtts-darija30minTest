@@ -121,7 +121,9 @@ Pour exécuter le projet sur une autre machine :
 ```bash
 from google.colab import drive
 drive.mount('/content/drive')
- 3)  cloner le repo GitHub
+```
+ ### 3)  cloner le repo GitHub
+```bash 
 %cd /content
 !git clone https://github.com/ChaimaeHde/xtts-darija30minTest.git
 %cd /content/xtts-darija30minTest
