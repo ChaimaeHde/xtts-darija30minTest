@@ -79,20 +79,18 @@ xtts-darija/
 
 ###  Important
 Le repository hébergé sur GitHub **ne contient pas les fichiers du modèle entraîné** (`best_model_1370.pth`, `config.json`) car ils sont trop volumineux
+\`\`\`python
 
-### Executer dans colab
-\`\`\`bash
-### Installation
 !pip install -q coqui-tts gradio huggingface_hub soundfile
 
-### Cloner le repo
+# Cloner le repo
 !git clone https://github.com/ChaimaeHde/xtts-darija30minTest.git
 %cd xtts-darija30minTest
 
-### Lancer l'interface
+# Lancer l'interface
 # Le modèle (5.6 GB) sera téléchargé automatiquement depuis HuggingFace
 !python app.py
-
+\`\`\`
 ##  Pourquoi aucun fine-tuning n’est nécessaire
 
 Le fine-tuning est effectué **une seule fois** pour générer les fichiers finaux :
