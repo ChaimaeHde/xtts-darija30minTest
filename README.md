@@ -13,21 +13,21 @@ basé sur XTTS-v2 avec fine-tuning sur le dataset DODa.
 | Loss mel_ce finale | 4.246 | Convergence partielle |
 
 ## Installation
-\`\`\`bash
+```bash
 pip install -r requirements.txt
 apt-get install -y ffmpeg
-\`\`\`
+```
 
 ## Utilisation rapide
 
 ### 1. Préparer les données
-\`\`\`python
+```bash
 from data.prepare_dataset import prepare_all
 prepare_all(n_samples=650, output_dir="doda_darija")
-\`\`\`
+```
 
 ### 2. Finetuner (GPU T4 requis)
-\`\`\`python
+```bash
 from training.finetune import finetune
 finetune(
     data_path   = "doda_darija",
@@ -35,10 +35,10 @@ finetune(
     output_path = "outputs",
     epochs      = 5,
 )
-\`\`\`
+```
 
 ### 3. Générer un audio
-\`\`\`python
+```bash
 from inference.generate import load_model, generate
 model, config = load_model(
     checkpoint_path = "outputs/best_model.pth",
@@ -50,19 +50,19 @@ generate(model, config,
     speaker_wav = "ref.wav",
     output_path = "output.wav",
 )
-\`\`\`
+```
 
 ### 4. Interface Gradio
 \`\`\`python
 from interface.gradio_app import launch_interface
 launch_interface(model, config, share=True)
-\`\`\`
+```
 
 ## Dataset
 DODa : https://huggingface.co/datasets/atlasia/DODa-audio-dataset
 
 ## Structure du projet
-\`\`\`
+```
 xtts-darija/
 ├── config/           ← Configuration centralisée
 ├── data/             ← Préparation du dataset
@@ -71,7 +71,7 @@ xtts-darija/
 ├── evaluation/       ← WER, CER, MOS
 ├── interface/        ← Interface Gradio
 └── notebooks/        ← Demo Colab
-\`\`\`
+```
 
 
 
@@ -79,18 +79,13 @@ xtts-darija/
 
 ###  Important
 Le repository hébergé sur GitHub **ne contient pas les fichiers du modèle entraîné** (`best_model_1370.pth`, `config.json`) car ils sont trop volumineux
-\`\`\`python
+```bash
 
 !pip install -q coqui-tts gradio huggingface_hub soundfile
-
-# Cloner le repo
 !git clone https://github.com/ChaimaeHde/xtts-darija30minTest.git
 %cd xtts-darija30minTest
-
-# Lancer l'interface
-# Le modèle (5.6 GB) sera téléchargé automatiquement depuis HuggingFace
 !python app.py
-\`\`\`
+```
 ##  Pourquoi aucun fine-tuning n’est nécessaire
 
 Le fine-tuning est effectué **une seule fois** pour générer les fichiers finaux :
