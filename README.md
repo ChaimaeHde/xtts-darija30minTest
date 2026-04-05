@@ -80,6 +80,19 @@ xtts-darija/
 ###  Important
 Le repository hébergé sur GitHub **ne contient pas les fichiers du modèle entraîné** (`best_model_1370.pth`, `config.json`) car ils sont trop volumineux
 
+### Executer dans colab
+\`\`\`bash
+### Installation
+!pip install -q coqui-tts gradio huggingface_hub soundfile
+
+### Cloner le repo
+!git clone https://github.com/ChaimaeHde/xtts-darija30minTest.git
+%cd xtts-darija30minTest
+
+### Lancer l'interface
+# Le modèle (5.6 GB) sera téléchargé automatiquement depuis HuggingFace
+!python app.py
+
 ##  Pourquoi aucun fine-tuning n’est nécessaire
 
 Le fine-tuning est effectué **une seule fois** pour générer les fichiers finaux :
@@ -110,42 +123,7 @@ Pour exécuter le projet sur une autre machine :
    - `config.json`  
 4. Le tokenizer XTTS (géré automatiquement)
    
-## Étapes pour exécuter sur une autre machine / Colab
 
-### 1) Installer les dépendances
-```bash
-!pip install -q coqui-tts==0.24.2 gradio soundfile numpy
-!apt-get update -y && apt-get install -y ffmpeg
-```
- ### 2)  monter Drive si tu gardes le modèle dans Drive
-```bash
-from google.colab import drive
-drive.mount('/content/drive')
-```
- ### 3)  cloner le repo GitHub
-```bash 
-%cd /content
-!git clone https://github.com/ChaimaeHde/xtts-darija30minTest.git
-%cd /content/xtts-darija30minTest
-!ls
-```
-### 4) remettre les checkpoints
-```bash
-import os, shutil
-
-MODEL_SOURCE_DIR = "/content/drive/MyDrive/xtts_darija_pfa"
-CHECKPOINTS_DIR = "/content/xtts-darija30minTest/checkpoints"
-
-os.makedirs(CHECKPOINTS_DIR, exist_ok=True)
-shutil.copy2(os.path.join(MODEL_SOURCE_DIR, "best_model_1370.pth"), CHECKPOINTS_DIR)
-shutil.copy2(os.path.join(MODEL_SOURCE_DIR, "config.json"), CHECKPOINTS_DIR)
-
-print("checkpoints ready:", os.listdir(CHECKPOINTS_DIR))
-```
-### 5) lancer
-```bash
-!python app.py
-```
 
 
 ## Auteurs
