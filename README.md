@@ -53,7 +53,7 @@ generate(model, config,
 ```
 
 ### 4. Interface Gradio
-\`\`\`python
+```bash
 from interface.gradio_app import launch_interface
 launch_interface(model, config, share=True)
 ```
@@ -75,7 +75,7 @@ xtts-darija/
 
 
 
-##  Exécuter le modèle sur une autre machine (sans re-fine-tuning)
+###  Exécuter le modèle sur colab
 
 ###  Important
 Le repository hébergé sur GitHub **ne contient pas les fichiers du modèle entraîné** (`best_model_1370.pth`, `config.json`) car ils sont trop volumineux
