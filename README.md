@@ -125,8 +125,7 @@ Pour exécuter le projet sur une autre machine :
 
 1. Le repository du code (`git clone`)
 2. Les dépendances installées (`pip install -r requirements.txt`)
-3. Un token HuggingFace ([huggingface.co/settings/tokens](https://huggingface.co/settings/tokens))
-4. Les fichiers du modèle — **téléchargés automatiquement** depuis [chaimaehde/xtts-darija](https://huggingface.co/chaimaehde/xtts-darija) :
+3. Les fichiers du modèle — **téléchargés automatiquement** depuis [chaimaehde/xtts-darija](https://huggingface.co/chaimaehde/xtts-darija) :
    - `best_model_1370.pth` — poids du modèle finetuné
    - `config.json` — configuration XTTS-v2
    - `vocab.json` — vocabulaire du tokenizer arabe
