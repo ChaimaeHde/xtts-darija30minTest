@@ -94,11 +94,6 @@ Ces 3 fichiers sont **téléchargés automatiquement** au premier lancement de `
 ```python
 # Cellule 1 — Installation
 !pip install -q coqui-tts gradio huggingface_hub soundfile
-
-# Cellule 2 — Login HuggingFace (obligatoire)
-from huggingface_hub import login
-login(token="TON_TOKEN_HF")  # huggingface.co/settings/tokens
-
 # Cellule 3 — Cloner et lancer
 !git clone https://github.com/ChaimaeHde/xtts-darija30minTest.git
 %cd xtts-darija30minTest
