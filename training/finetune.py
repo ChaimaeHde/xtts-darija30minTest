@@ -21,7 +21,7 @@ def download_base_model(model_dir):
             print(f"Téléchargement {fname}...")
             ModelManager._download_model_files([url], model_dir, progress_bar=True)
         else:
-            print(f"✅ {fname} déjà présent")
+            print(f" {fname} déjà présent")
 
 
 def finetune(
@@ -136,8 +136,8 @@ def finetune(
         eval_split_max_size = 256,
         eval_split_size     = 0.1,
     )
-    print(f"✅ Train : {len(train_samples)} samples")
-    print(f"✅ Eval  : {len(eval_samples)} samples")
+    print(f" Train : {len(train_samples)} samples")
+    print(f" Eval  : {len(eval_samples)} samples")
 
     # Initialisation du modèle et lancement
     model = GPTTrainer.init_from_config(config)
@@ -157,5 +157,5 @@ def finetune(
 
     print(f"Démarrage du finetuning — {epochs} epochs")
     trainer.fit()
-    print(f"✅ Modèle sauvegardé dans {output_path}")
+    print(f" Modèle sauvegardé dans {output_path}")
     return output_path
