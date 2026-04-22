@@ -35,7 +35,7 @@ def load_model(checkpoint_path, config_path, vocab_path):
 
     device = "cuda" if torch.cuda.is_available() else "cpu"
     model  = model.to(device)
-    print(f"✅ Modèle chargé sur {device}")
+    print(f"Modèle chargé sur {device}")
     return model, config
 
 
@@ -68,7 +68,7 @@ def generate(model, config, text, speaker_wav, language="ar", output_path="outpu
         language    = language,
     )
     sf.write(output_path, outputs["wav"], 24000)
-    print(f"✅ Audio généré : {output_path}")
+    print(f" Audio généré : {output_path}")
     return output_path
 
 
@@ -98,5 +98,5 @@ def generate_batch(model, config, texts, speaker_wav, output_dir="generated", la
         generate(model, config, text, speaker_wav,
                  language=language, output_path=out)
         paths.append(out)
-    print(f"✅ {len(paths)} audios générés dans {output_dir}/")
+    print(f" {len(paths)} audios générés dans {output_dir}/")
     return paths
