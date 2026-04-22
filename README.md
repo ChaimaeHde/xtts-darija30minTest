@@ -77,46 +77,66 @@ xtts-darija/
 
 ###  Exécuter le modèle sur colab
 
-###  Important
-Le repository hébergé sur GitHub **ne contient pas les fichiers du modèle entraîné** (`best_model_1370.pth`, `config.json`) car ils sont trop volumineux
-```bash
+### Important
+Le repository GitHub **ne contient pas les fichiers du modèle entraîné** car ils sont trop volumineux.
+Ils sont hébergés sur HuggingFace : [chaimaehde/xtts-darija](https://huggingface.co/chaimaehde/xtts-darija)
 
+| Fichier | Taille | Description |
+|---------|--------|-------------|
+| `best_model_1370.pth` | ~1.5 GB | Poids du modèle GPT finetuné |
+| `config.json` | ~5 KB | Configuration XTTS-v2 |
+| `vocab.json` | ~1 KB | Vocabulaire du tokenizer arabe |
+
+Ces 3 fichiers sont **téléchargés automatiquement** au premier lancement de `app.py`.
+
+### Lancement sur Colab (GPU T4 requis)
+
+```python
+# Cellule 1 — Installation
 !pip install -q coqui-tts gradio huggingface_hub soundfile
+
+# Cellule 2 — Login HuggingFace (obligatoire)
+from huggingface_hub import login
+login(token="TON_TOKEN_HF")  # huggingface.co/settings/tokens
+
+# Cellule 3 — Cloner et lancer
 !git clone https://github.com/ChaimaeHde/xtts-darija30minTest.git
 %cd xtts-darija30minTest
 !python app.py
 ```
-##  Pourquoi aucun fine-tuning n’est nécessaire
 
+## Pourquoi aucun fine-tuning n'est nécessaire
 Le fine-tuning est effectué **une seule fois** pour générer les fichiers finaux :
-
 - `best_model_1370.pth`
 - `config.json`
+- `vocab.json`
 
-Ensuite, le modèle peut être réutilisé à l’infini.
+Ensuite, le modèle peut être réutilisé à l'infini.
 
-La fonction `load_model()` :
-- charge la configuration XTTS  
-- initialise le modèle  
-- charge les poids entraînés (checkpoint)  
-- charge le tokenizer / vocabulaire  
-- envoie le modèle sur CPU ou GPU  
+La fonction `load_model_once()` dans `app.py` :
+- télécharge automatiquement les 3 fichiers depuis HuggingFace
+- charge la configuration XTTS-v2
+- initialise le modèle GPT
+- charge les poids entraînés (checkpoint `best_model_1370.pth`)
+- charge le vocabulaire arabe (`vocab.json`)
+- envoie le modèle sur GPU (si disponible) ou CPU
 
-Donc lorsque vous exécutez `app.py`, le modèle est simplement **restauré**, pas réentraîné.
+Lorsque vous exécutez `app.py`, le modèle est **restauré**, pas réentraîné.
 
 ---
 
 ## Ce dont vous avez besoin
 Pour exécuter le projet sur une autre machine :
 
-1. Le repository du code  
-2. Les dépendances installées  
-3. Les fichiers du modèle entraîné :
-   - `best_model_1370.pth`
-   - `config.json`  
-4. Le tokenizer XTTS (géré automatiquement)
-   
+1. Le repository du code (`git clone`)
+2. Les dépendances installées (`pip install -r requirements.txt`)
+3. Un token HuggingFace ([huggingface.co/settings/tokens](https://huggingface.co/settings/tokens))
+4. Les fichiers du modèle — **téléchargés automatiquement** depuis [chaimaehde/xtts-darija](https://huggingface.co/chaimaehde/xtts-darija) :
+   - `best_model_1370.pth` — poids du modèle finetuné
+   - `config.json` — configuration XTTS-v2
+   - `vocab.json` — vocabulaire du tokenizer arabe
 
+---
 
 
 ## Auteurs
