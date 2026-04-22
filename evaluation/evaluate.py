@@ -28,7 +28,7 @@ def evaluate_wer_cer(audio_files, original_texts, whisper_model_size="large-v2",
     print(f"Chargement Whisper {whisper_model_size}...")
     compute_type = "float16" if device == "cuda" else "int8"
     asr = WhisperModel(whisper_model_size, device=device, compute_type=compute_type)
-    print("✅ Whisper chargé")
+    print("Whisper chargé")
 
     results = []
     for i, (audio_path, original) in enumerate(zip(audio_files, original_texts)):
